@@ -1,5 +1,17 @@
 import java.util.Scanner;
 public class BaiTap1 {
+    public static String tachTen(String hoTen){
+        hoTen = hoTen.trim(); //cat khoang trang du thua
+        int i = hoTen.lastIndexOf(' '); // vi tri xuat hien cuoi cung cua khoang trang
+        String ten = hoTen.substring(i+1);
+        return ten;
+    }
+    public static String tachHoDem(String hoten){
+        hoten = hoten.trim(); //cat khoang trang du thua
+        int i = hoten.lastIndexOf(' '); // vi tri xuat hien cuoi cung cua khoang trang
+        String hoDem = hoten.substring(0,i-1);
+        return hoDem;
+    }
     public static void sortArr(int[] arri) {
         int temp = arri[0];
         for (int i = 0; i < arri.length - 1; i++) {
@@ -46,20 +58,26 @@ public class BaiTap1 {
                 }
                 break;
             case 5:
-                String temp = new String();
-                for (int i = 0; i < str.length-1; i++) {
+                for (int i = 0; i < str.length; i++) {
                     for (int j = i + 1; j < str.length; j++) {
-                        if (str[i].compareTo(str[j]) > 0) {
-                            temp = str[i];
+                        if (tachTen(str[i]).compareTo(tachTen(str[j])) > 0) {
+                            String temp = str[i];
                             str[i] = str[j];
                             str[j] = temp;
                         }
+                        else if (tachTen(str[i]).compareTo(tachTen(str[j])) == 0){
+                            if (tachHoDem(str[i]).compareTo(tachHoDem(str[j])) > 0){
+                                String temp = str[i];
+                                str[i] = str[j];
+                                str[j] = temp;
+                            }
+                        }
                     }
-                    for (i = 0; i < str.length; i++) {
-                        System.out.printf("Familly " +str[i]+"\n");
-                    }
-                    break;
                 }
+                for (int i = 0; i < str.length; i++) {
+                    System.out.printf("Familly " +str[i]+"\n");
+                }
+                break;
         }
 
     }

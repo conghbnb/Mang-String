@@ -1,6 +1,18 @@
 import java.util.Scanner;
 
 public class BaiTap2 {
+    public static String tachTen(String hoTen){
+        hoTen = hoTen.trim(); //cat khoang trang du thua
+        int i = hoTen.lastIndexOf(' '); // vi tri xuat hien cuoi cung cua khoang trang
+        String ten = hoTen.substring(i+1);
+        return ten;
+    }
+    public static String tachHoDem(String hoten){
+        hoten = hoten.trim(); //cat khoang trang du thua
+        int i = hoten.lastIndexOf(' '); // vi tri xuat hien cuoi cung cua khoang trang
+        String hoDem = hoten.substring(0,i-1);
+        return hoDem;
+    }
     public static void sortArr(int[] arri, String[] str) {
         String tg = new String();
         int temp = 0;
@@ -54,20 +66,26 @@ public class BaiTap2 {
                     System.out.printf("VDV " +str[i] +"\n");}
             break;
             case 4:
-                //String temp = new String();
                 for (int i = 0; i < str.length; i++) {
                     for (int j = i + 1; j < str.length; j++) {
-                        if (str[i].compareTo(str[j]) > 0) {
+                        if (tachTen(str[i]).compareTo(tachTen(str[j])) > 0) {
                             String temp = str[i];
                             str[i] = str[j];
                             str[j] = temp;
                         }
+                        else if (tachTen(str[i]).compareTo(tachTen(str[j])) == 0){
+                            if (tachHoDem(str[i]).compareTo(tachHoDem(str[j])) > 0){
+                                String temp = str[i];
+                                str[i] = str[j];
+                                str[j] = temp;
+                            }
+                        }
                     }
-                    for (i = 0; i < str.length; i++) {
-                        System.out.printf("VDV " +str[i]+"\n");
-                    }
-                    break;
                 }
+                for (int i = 0; i < str.length; i++) {
+                    System.out.printf("VDV " +str[i]+"\n");
+                }
+                break;
             case 5:
                 for (int i = 0; i < str.length; i++) {
                     if (str[i].indexOf('T') == 0) System.out.printf(str[i]+"\n");
